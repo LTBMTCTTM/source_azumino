@@ -17,7 +17,7 @@
                 </div>
                 <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-right">
-                        <button type="button" class="btn az-bg-primary" data-toggle="modal">新規登録</button>
+                        <button type="button" class="btn az-bg-primary" onclick="jQuery.Workers.func_detail(this, true)">新規登録</button>
                     </ol>
                 </div>
             </div>
@@ -50,7 +50,7 @@
                                 @endif
                                 <td class="text-center">
                                     <button class="btn az-bg-primary" id="{{$row->worker_id}}"
-                                            onclick="jQuery.Workers.func_detail(this)">詳細
+                                            onclick="jQuery.Workers.func_detail(this, false)">詳細
                                     </button>
                                 </td>
                             </tr>

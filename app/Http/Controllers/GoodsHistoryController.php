@@ -31,6 +31,8 @@ class GoodsHistoryController extends Controller
             ->get();
 
         $condition = new TShipHisSearch();
+        $condition->create_date_from = date(DATE_FORMAT);
+        $condition->create_date_to = date(DATE_FORMAT);
 
         $tShipHis = new TShipHis();
         try {

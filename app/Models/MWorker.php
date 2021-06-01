@@ -28,9 +28,17 @@ class MWorker extends Model
 
             $results = $this::query();
             if ($condition->worker_id != '') {
-                $results->where($this->table.'.worker_id', '=', $condition->worker_id . '%');
+                $results->where($this->table.'.worker_id', '=', $condition->worker_id);
+            }
+            if ($condition->worker_name != '') {
+                $results->where($this->table.'.worker_name', 'LIKE', '%' . $condition->worker_name . '%');
+            }
+            if ($condition->store_name != '') {
+                $results->where($this->table.'.store_name', 'LIKE', '%' . $condition->store_name . '%');
             }
 
+            $results->orderBy('create_date', 'desc');
+            $results->orderBy('last_update', 'desc');
             $total = $results->count();
             if ($page != 0) {
                 $results->offset($offset)
@@ -38,8 +46,7 @@ class MWorker extends Model
             }
             //echo $results->toSql();exit;
             $data = $results->get();
-            $paginate = new LengthAwarePaginator($data, $total, $limit, $page);
-            return $paginate;
+            return new LengthAwarePaginator($data, $total, $limit, $page);
 
         } catch (\Throwable $e) {
             throw $e;

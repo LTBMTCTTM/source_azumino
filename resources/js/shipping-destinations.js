@@ -49,7 +49,7 @@
             } else {
                 html += '<td class="text-center text-red">無効</td>';
             }
-            html += '<td class="text-center"><button class="btn az-bg-primary" id="' + data.ship_des_id + '" onclick="jQuery.Shipping.func_detail(this)">詳細</button></td>';
+            html += '<td class="text-center"><button class="btn az-bg-primary" id="' + data.ship_des_id + '" onclick="jQuery.Shipping.func_detail(this, false)">詳細</button></td>';
             html += '</tr>';
 
             return html;
@@ -136,7 +136,8 @@
                 const $mess = getMessageErrors(res.data.message);
                 swalAlert($mess || 'Errors', 'error');
             }
-        }
+        },
+
     });
 })(jQuery);
 jQuery(document).ready(function () {

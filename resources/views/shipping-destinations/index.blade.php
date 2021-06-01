@@ -17,8 +17,8 @@
                 </div>
                 <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-right">
-                        <button type="button" class="btn az-bg-primary" data-toggle="modal"
-                                data-target="#modal-shipping-detail">新規登録
+                        <button type="button" class="btn az-bg-primary" onclick="jQuery.Shipping.func_detail('', true)">
+                            新規登録
                         </button>
                     </ol>
                 </div>
@@ -54,7 +54,7 @@
                                 @endif
                                 <td class="text-center">
                                     <button class="btn az-bg-primary" id="{{$row->ship_des_id}}"
-                                            onclick="jQuery.Shipping.func_detail(this)">詳細
+                                            onclick="jQuery.Shipping.func_detail(this, false)">詳細
                                     </button>
                                 </td>
                             </tr>

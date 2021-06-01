@@ -24,15 +24,15 @@
                 <input type="text" class="form-control" name="actual_vote" id="actual-vote" autocomplete="off" placeholder="Number">
             </div>
             <div class="form-group">
-                <label id="label-work-date-from">出庫日From</label>
+                <label id="label-work-date-from" for="create-date-from">出庫日From</label>
                 <div class="input-group">
-                    <input id="work-date-from" type="text" name="work_date_from" class="form-control input-time datepicker" value="{{date(DATE_FORMAT)}}">
+                    <input id="create-date-from" type="text" name="create_date_from" class="form-control input-time datepicker" value="{{$condition->create_date_from}}">
                 </div>
             </div>
             <div class="form-group">
-                <label id="label-work-date-to">出庫日to</label>
+                <label id="label-work-date-to" for="create-date-to">出庫日to</label>
                 <div class="input-group someOtherWidget">
-                    <input id="work-date-to" name="work_date_to" class="form-control input-time datepicker" value="{{date(DATE_FORMAT)}}">
+                    <input id="create-date-to" name="create_date_to" class="form-control input-time datepicker" value="{{$condition->create_date_to}}">
                 </div>
             </div>
             <div class="form-group">

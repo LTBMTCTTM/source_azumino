@@ -37,10 +37,14 @@ Route::middleware(['auth.custom'])->group(function () {
     Route::post('shipping-destinations/detail', [ShippingDestinations::class, 'detail'])->name('shipping.destinations.detail');
     Route::post('shipping-destinations/delete', [ShippingDestinations::class, 'delete'])->name('shipping.destinations.delete');
     Route::post('shipping-destinations/update', [ShippingDestinations::class, 'update'])->name('shipping.destinations.update');
+    Route::post('shipping-destinations/add-new', [ShippingDestinations::class, 'addNew'])->name('shipping.destinations.add-new');
 
     Route::get('workers', [WorkersController::class, 'index'])->name('workers');
     Route::post('workers/search', [WorkersController::class, 'search'])->name('workers.search');
     Route::post('workers/detail', [WorkersController::class, 'detail'])->name('workers.detail');
+    Route::post('workers/delete', [WorkersController::class, 'delete'])->name('workers.delete');
+    Route::post('workers/update', [WorkersController::class, 'update'])->name('workers.update');
+    Route::post('workers/add-new', [WorkersController::class, 'addNew'])->name('workers.add-new');
 
     Route::get('file/download', [FileController::class, 'download'])->name('file.download');
 

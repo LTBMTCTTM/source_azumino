@@ -15,7 +15,7 @@
         </li>
         <li class="nav-item d-none d-sm-inline-block ml-2" style="width: 170px">
             <select class="form-control border-secondary az-bg-light text-bold" onchange="location = this.value;">
-                <option {{ request()->is('shipping-destinations') || request()->is('workers')? '' : 'selected' }}></option>
+                <option value="{{ route('goods.history') }}" {{ request()->is('shipping-destinations') || request()->is('workers')? '' : 'selected' }}>マスタ管理</option>
                 <option value="{{ route('shipping.destinations')}}" {{request()->is('shipping-destinations') ? 'selected' : '' }}>出庫先マスタ</option>
                 <option value="{{ route('workers')}}" {{request()->is('workers') ? 'selected' : '' }}>作業員マスタ</option>
             </select>

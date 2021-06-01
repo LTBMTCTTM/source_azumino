@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal-worker-detail">
+<div class="modal fade" id="modal-shipping-detail">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header az-bg-primary">
@@ -21,18 +21,18 @@
                             <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">閉じる</button>
                         </div>
                         <div class="col-md-6 d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-primary az-bg-primary btn-block" onclick="jQuery.Workers.func_modal_add_new_confirm()">保存</button>
+                            <button type="button" class="btn btn-primary az-bg-primary btn-block" onclick="jQuery.Shipping.func_modal_add_new_confirm()">保存</button>
                         </div>
                     </div>
                     <div class="row modal-footer-update">
                         <div class="col-md-4 d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-danger btn-block" onclick="jQuery.Workers.func_modal_delete_confirm()">削除</button>
+                            <button type="button" class="btn btn-danger btn-block" onclick="jQuery.Shipping.func_modal_delete_confirm()">削除</button>
                         </div>
                         <div class="col-md-4 d-flex justify-content-center mb-2">
                             <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">閉じる</button>
                         </div>
                         <div class="col-md-4 d-flex justify-content-center mb-2">
-                            <button type="button" class="btn btn-primary az-bg-primary btn-block" onclick="jQuery.Workers.func_modal_update_confirm()">保存</button>
+                            <button type="button" class="btn btn-primary az-bg-primary btn-block" onclick="jQuery.Shipping.func_modal_update_confirm()">保存</button>
                         </div>
                     </div>
                 </div>
@@ -41,3 +41,4 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+<?php /**PATH /home/vagrant/Code/azumino/resources/views/shipping-destinations/modal-detail.blade.php ENDPATH**/ ?>

@@ -66,8 +66,8 @@ class TShipHis extends Model
             if ($condition->actual_vote != '') {
                 $results->where('t_ship_his_detail.actual_vote', '=', $condition->actual_vote);
             }
-            if ($condition->work_date_from != '' && $condition->work_date_to != '') {
-                $results->whereBetween('t_ship_his.work_date', [date(DATE_FORMAT . '  00:00:00', strtotime($condition->work_date_from)), date(DATE_FORMAT . '  23:59:59', strtotime($condition->work_date_to))]);
+            if ($condition->create_date_from != '' && $condition->create_date_to != '') {
+                $results->whereBetween('t_ship_his_detail.create_date', [date(DATE_FORMAT . '  00:00:00', strtotime($condition->create_date_from)), date(DATE_FORMAT . '  23:59:59', strtotime($condition->create_date_to))]);
             }
             if ($condition->ship_des_id != '') {
                 $results->where('t_ship_his.ship_des_id', '=', $condition->ship_des_id);
@@ -79,7 +79,8 @@ class TShipHis extends Model
                 // echo $condition->ship_grp_key;exit;
                 $results->where('t_ship_his.ship_des_id', 'LIKE', $condition->ship_grp_key . '%');
             }
-            $results->orderBy('id', 'desc');
+            $results->orderBy('t_ship_his_detail.create_date', 'desc');
+            $results->orderBy('t_ship_his_detail.index', 'desc');
             $total = $results->count();
             if ($page != 0) {
                 $results->offset($offset)
@@ -117,14 +118,14 @@ class TShipHis extends Model
 
             foreach ($model as $key => $row) {
                 $export_collections[] = [
-                    $row->work_date == null ? '' : date(DATE_FORMAT_CSV,  strtotime($row->work_date)),
-                    $row->ship_date == null ? '' : date(DATE_FORMAT, strtotime($row->ship_date)),
+                    $row->create_date == null ? '' : date(DATE_FORMAT_CSV,  strtotime($row->create_date)),
+                    $row->ship_date == null ? '' : date(DATE_FORMAT_CSV, strtotime($row->ship_date)),
                     $row->lot_no,
                     $row->actual_vote,
                     $row->index.'/'.$row->palette_plan,
                     $row->ship_des_name,
                     $row->car_num,
-                    $row->ship_date == null ? '' : date('H:i', strtotime($row->ship_date)),
+                    $row->create_date == null ? '' : date('H:i', strtotime($row->create_date)),
                     $row->worker_name,
                     $row->store_name
                 ];

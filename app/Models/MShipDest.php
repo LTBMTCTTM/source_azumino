@@ -37,12 +37,14 @@ class MShipDest extends Model
                 $results->where('m_ship_des.ship_des_id', 'LIKE', '%' . $condition->ship_des_id);
             }
             if ($condition->ship_des_name != '') {
-                $results->where('m_ship_des.ship_des_name', '=', $condition->ship_des_name);
+                $results->where('m_ship_des.ship_des_name', 'LIKE', '%' . $condition->ship_des_name . '%');
             }
             if ($condition->ship_des_tel != '') {
                 $results->where('m_ship_des.ship_des_tel', '=', $condition->ship_des_tel);
             }
 
+            $results->orderBy('create_date', 'desc');
+            $results->orderBy('last_update', 'desc');
             $total = $results->count();
             if ($page != 0) {
                 $results->offset($offset)
@@ -51,11 +53,11 @@ class MShipDest extends Model
             //echo $results->toSql();exit;
             $data = $results->get();
 
-            $paginate = new LengthAwarePaginator($data, $total, $limit, $page);
-            return $paginate;
+            return new LengthAwarePaginator($data, $total, $limit, $page);
 
         } catch (\Throwable $e) {
             throw $e;
         }
     }
+
 }

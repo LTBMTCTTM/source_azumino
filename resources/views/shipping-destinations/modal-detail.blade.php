@@ -16,7 +16,15 @@
 
                 </div>
                 <div class="modal-footer d-block">
-                    <div class="row">
+                    <div class="row modal-footer-insert">
+                        <div class="col-md-6 d-flex justify-content-center mb-2">
+                            <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">閉じる</button>
+                        </div>
+                        <div class="col-md-6 d-flex justify-content-center mb-2">
+                            <button type="button" class="btn btn-primary az-bg-primary btn-block" onclick="jQuery.Shipping.func_modal_add_new_confirm()">保存</button>
+                        </div>
+                    </div>
+                    <div class="row modal-footer-update">
                         <div class="col-md-4 d-flex justify-content-center mb-2">
                             <button type="button" class="btn btn-danger btn-block" onclick="jQuery.Shipping.func_modal_delete_confirm()">削除</button>
                         </div>

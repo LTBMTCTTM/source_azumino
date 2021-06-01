@@ -41,3 +41,4 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+<?php /**PATH /home/vagrant/Code/azumino/resources/views/workers/modal-detail.blade.php ENDPATH**/ ?>
