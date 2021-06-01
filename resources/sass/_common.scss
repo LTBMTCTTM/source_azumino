@@ -1,0 +1,34 @@
+
+@import "variables";
+
+.ui-datepicker{
+  z-index: 1039 !important;
+}
+.main-sidebar{
+  overflow-y: unset;
+  .sidebar{
+    overflow-y: unset !important;
+  }
+}
+
+//fixed height of select 2
+.select2-selection__arrow, .select2-selection--single{
+  height: calc(2.25rem + 2px) !important;
+}
+
+.cst-progress {
+  z-index: 9998;
+  cursor: wait;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  button {
+    position: absolute;
+    top: 3px;
+    right: 45%;
+    z-index: 9999;
+  }
+}
