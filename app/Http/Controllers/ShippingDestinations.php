@@ -24,10 +24,8 @@ class ShippingDestinations extends Controller
 
         $mShipDes = new MShipDest();
         $condition = new MShipDestSearch();
-        try {
-            $model = $mShipDes->search($condition, 1);
-        } catch (\Throwable $e) {
-        }
+        $model = $mShipDes->search($condition, 1);
+
         if (empty($model)):
             $currentPage = 1;
             $total = 0;

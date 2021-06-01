@@ -35,10 +35,7 @@ class GoodsHistoryController extends Controller
         $condition->create_date_to = date(DATE_FORMAT);
 
         $tShipHis = new TShipHis();
-        try {
-            $model = $tShipHis->search($condition, 1);
-        } catch (\Throwable $e) {
-        }
+        $model = $tShipHis->search($condition, 1);
 
         if (empty($model)):
             $currentPage = 1;

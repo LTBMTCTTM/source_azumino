@@ -100,7 +100,7 @@
                 }, {});
         },
         func_modal_delete_confirm: function () {
-            const $mess = '本情報はシステムから完全に削除されます。削除してもよろしいですか？';
+            const $mess = '情報を削除したら復帰できません。<br/>削除してよろしいですか？';
             const sw_confirm = swalConfirm($mess);
             sw_confirm.fire({}).then((result) => {
                 if (result.value) {
@@ -111,21 +111,18 @@
         },
         func_modal_delete_callback: function (res) {
             if (res.data.status) {
-                const $mess = 'Ngon rồi';
-                swal_alert($mess || 'Success', 'success').fire({}).then(result => {
-                    $('#modal-shipping-detail').modal('hide');
-                });
+                $('#modal-shipping-detail').modal('hide');
                 jQuery.Shipping.func_search()
             }
             if (!res.data.status) {
-                const $mess = getMessageErrors(res.data.message);
+                const $mess = '情報削除が失敗しました。';
                 swalAlert($mess || 'Errors', 'error');
             }
         },
         func_modal_update_confirm: function () {
             const params = jQuery.Shipping.func_modal_get_form_detail();
             const id_grp = params.ship_des_id.substr(0,2);
-            const $mess = id_grp == params.ship_grp_key ? 'Update?' : '出庫先の商品コードは選択グループの開始コードと合っていません。保存しますか？';
+            const $mess = id_grp == params.ship_grp_key ? '情報を保存します。よろしいですか？' : '出庫先の商品コードは選択グループの開始コードと合っていません。保存しますか？';
 
             const sw_confirm = swalConfirm($mess);
             sw_confirm.fire({}).then((result) => {
@@ -136,24 +133,21 @@
         },
         func_modal_update_confirm_callback: function (res) {
             if (res.data.status) {
-                const $mess = 'Ngon rồi';
-                swal_alert($mess || 'Success', 'success').fire({}).then(result => {
-                    $('#modal-shipping-detail').modal('hide');
-                });
+                $('#modal-shipping-detail').modal('hide');
 
                 const params = jQuery.Shipping.func_get_search();
                 params.page = jQuery.Shipping.page;
                 izanagi('shipping-destinations/search', 'post', params, null, jQuery.Shipping.func_search_callback);
             }
             if (!res.data.status) {
-                const $mess = getMessageErrors(res.data.message);
+                const $mess = '情報保存が失敗しました。';
                 swalAlert($mess || 'Errors', 'error');
             }
         },
         func_modal_add_new_confirm: function (){
             const params = jQuery.Shipping.func_modal_get_form_detail();
             const id_grp = params.ship_des_id.substr(0,2);
-            const $mess = id_grp == params.ship_grp_key ? 'Could you create new?' : '出庫先の商品コードは選択グループの開始コードと合っていません。保存しますか？';
+            const $mess = id_grp == params.ship_grp_key ? '情報を保存します。よろしいですか？' : '出庫先の商品コードは選択グループの開始コードと合っていません。保存しますか？';
 
             const sw_confirm = swalConfirm($mess);
             sw_confirm.fire({}).then((result) => {
@@ -166,17 +160,14 @@
         func_modal_add_new_confirm_callback: function (res) {
 
             if (res.data.status) {
-                const $mess = 'Đã tạo';
-                swal_alert($mess || 'Success', 'success').fire({}).then(result => {
-                    $('#modal-shipping-detail').modal('hide');
-                });
+                $('#modal-shipping-detail').modal('hide');
 
                 const params = jQuery.Shipping.func_get_search();
                 params.page = jQuery.Shipping.page;
                 izanagi('shipping-destinations/search', 'post', params, null, jQuery.Shipping.func_search_callback);
             }
             if (!res.data.status) {
-                const $mess = getMessageErrors(res.data.message);
+                const $mess = '情報保存が失敗しました。';
                 swalAlert($mess || 'Errors', 'error');
             }
         },

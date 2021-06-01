@@ -63,12 +63,12 @@ function izanagi(_action, _method, _data, _params, _callback) {
 
 function swalConfirm(message) {
     return swal.mixin({
-        title: 'Azumino',
-        text: message,
+        title: '安曇野出庫情報管理システム',
+        html: message,
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: "Yes, continue!",
-        cancelButtonText: "No, cancel!",
+        confirmButtonText: 'OK',
+        cancelButtonText: 'キャンセル',
         reverseButtons: true
     });
 }
@@ -76,14 +76,14 @@ function swalConfirm(message) {
 function swalAlert(message, type) {
     swal.fire({
         icon: type,
-        title: 'Azumino',
-        html: message,
+        title: '安曇野出庫情報管理システム',
+        html: message
     });
 }
 
 function swal_alert(message, type) {
     const swalAlertWithBootstrapButtons = swal.mixin({
-        title: 'Azumino',
+        title: '安曇野出庫情報管理システム',
         text: message,
         icon: type,
     });

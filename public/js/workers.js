@@ -95,7 +95,7 @@
                 }, {});
         },
         func_modal_delete_confirm: function () {
-            const $mess = '本情報はシステムから完全に削除されます。削除してもよろしいですか？';
+            const $mess = '情報を削除したら復帰できません。<br/>削除してよろしいですか？';
             const sw_confirm = swalConfirm($mess);
             sw_confirm.fire({}).then((result) => {
                 if (result.value) {
@@ -106,19 +106,17 @@
         },
         func_modal_delete_callback: function (res) {
             if (res.data.status) {
-                const $mess = 'Ngon rồi';
-                swal_alert($mess || 'Success', 'success').fire({}).then(result => {
-                    $('#modal-worker-detail').modal('hide');
-                });
+                $('#modal-worker-detail').modal('hide');
+
                 jQuery.Workers.func_search()
             }
             if (!res.data.status) {
-                const $mess = getMessageErrors(res.data.message);
+                const $mess = '情報削除が失敗しました。';
                 swalAlert($mess || 'Errors', 'error');
             }
         },
         func_modal_update_confirm: function () {
-            const $mess = 'Could you update?';
+            const $mess = '情報を保存します。よろしいですか？';
             const sw_confirm = swalConfirm($mess);
             sw_confirm.fire({}).then((result) => {
                 if (result.value) {
@@ -129,10 +127,7 @@
         },
         func_modal_update_confirm_callback: function (res) {
             if (res.data.status) {
-                const $mess = 'Ngon rồi';
-                swal_alert($mess || 'Success', 'success').fire({}).then(result => {
-                    $('#modal-worker-detail').modal('hide');
-                });
+                $('#modal-worker-detail').modal('hide');
 
                 const params = jQuery.Workers.func_get_search();
                 params.page = jQuery.Workers.page;
@@ -144,7 +139,7 @@
             }
         },
         func_modal_add_new_confirm: function () {
-            const $mess = 'Could you create new?';
+            const $mess = '情報を保存します。よろしいですか？';
             const sw_confirm = swalConfirm($mess);
             sw_confirm.fire({}).then((result) => {
                 if (result.value) {
@@ -156,17 +151,14 @@
         func_modal_add_new_confirm_callback: function (res) {
 
             if (res.data.status) {
-                const $mess = 'Đã tạo';
-                swal_alert($mess || 'Success', 'success').fire({}).then(result => {
-                    $('#modal-worker-detail').modal('hide');
-                });
+                $('#modal-worker-detail').modal('hide');
 
                 const params = jQuery.Workers.func_get_search();
                 params.page = jQuery.Workers.page;
                 izanagi('workers/search', 'post', params, null, jQuery.Workers.func_search_callback);
             }
             if (!res.data.status) {
-                const $mess = getMessageErrors(res.data.message);
+                const $mess = '情報保存が失敗しました。';
                 swalAlert($mess || 'Errors', 'error');
             }
         },

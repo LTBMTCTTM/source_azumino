@@ -39,8 +39,10 @@ class MShipDest extends Model
             if ($condition->ship_des_name != '') {
                 $results->where('m_ship_des.ship_des_name', 'LIKE', '%' . $condition->ship_des_name . '%');
             }
+            $condition->ship_des_tel = preg_replace('/\D/', '', $condition->ship_des_tel);
             if ($condition->ship_des_tel != '') {
                 $results->where('m_ship_des.ship_des_tel', '=', $condition->ship_des_tel);
+                $results->orWhere('m_ship_des.ship_des_tel_num', 'LIKE', '%' .$condition->ship_des_tel. '%');
             }
 
             $results->orderBy('create_date', 'desc');
@@ -50,7 +52,7 @@ class MShipDest extends Model
                 $results->offset($offset)
                     ->limit($limit);
             }
-            //echo $results->toSql();exit;
+            //echo $condition->ship_des_tel;exit;
             $data = $results->get();
 
             return new LengthAwarePaginator($data, $total, $limit, $page);

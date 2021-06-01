@@ -53,7 +53,7 @@
                                 <?php endif; ?>
                                 <td class="text-center">
                                     <button class="btn az-bg-primary" id="<?php echo e($row->ship_des_id); ?>"
-                                            onclick="jQuery.Shipping.func_detail(this)">詳細
+                                            onclick="jQuery.Shipping.func_detail(this, false)">詳細
                                     </button>
                                 </td>
                             </tr>
