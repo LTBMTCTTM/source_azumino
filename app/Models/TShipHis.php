@@ -79,6 +79,7 @@ class TShipHis extends Model
                 // echo $condition->ship_grp_key;exit;
                 $results->where('t_ship_his.ship_des_id', 'LIKE', $condition->ship_grp_key . '%');
             }
+            $results->orderBy('t_ship_his.id', 'desc');
             $results->orderBy('t_ship_his_detail.create_date', 'desc');
             $results->orderBy('t_ship_his_detail.index', 'desc');
             $total = $results->count();

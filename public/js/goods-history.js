@@ -52,7 +52,7 @@
             html += '<td class="text-center"> '+removeNull(data.index)+'/'+(data.palette_plan)+' </td>';
             html += '<td class="text-left">' + removeNull(data.ship_des_name) + '</td>';
             html += '<td class="text-center">' + removeNull(data.car_num) + '</td>';
-            const create_hour = data.create_date == null ? " " : moment(data.create_date).format("h:mm");
+            const create_hour = data.create_date == null ? " " : moment(data.create_date).format("HH:mm");
             html += '<td class="text-center">'+create_hour+'</td>';
             html += '<td class="text-left">'+removeNull(data.worker_name)+'</td>';
             html += '<td class="text-left"> '+removeNull(data.store_name)+' </td>';

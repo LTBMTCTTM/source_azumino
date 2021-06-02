@@ -64,7 +64,7 @@
                                 <td class="text-center"> <?php echo e($row->index.'/'.$row->palette_plan); ?> </td>
                                 <td class="text-left"> <?php echo e($row->ship_des_name); ?> </td>
                                 <td class="text-center"><?php echo e($row->car_num); ?></td>
-                                <td class="text-center"><?php echo e($row->create_date == null ? '' : date('H:i', strtotime($row->create_date))); ?></td>
+                                <td class="text-center"><?php echo e($row->create_date == null ? '' : date('HH:i', strtotime($row->create_date))); ?></td>
                                 <td class="text-left"> <?php echo e($row->worker_name); ?> </td>
                                 <td class="text-left"> <?php echo e($row->store_name); ?> </td>
                             </tr>

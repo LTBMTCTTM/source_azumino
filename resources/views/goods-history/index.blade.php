@@ -65,7 +65,7 @@
                                 <td class="text-center"> {{ $row->index.'/'.$row->palette_plan }} </td>
                                 <td class="text-left"> {{ $row->ship_des_name }} </td>
                                 <td class="text-center">{{$row->car_num}}</td>
-                                <td class="text-center">{{$row->create_date == null ? '' : date('H:i', strtotime($row->create_date))}}</td>
+                                <td class="text-center">{{$row->create_date == null ? '' : date('HH:i', strtotime($row->create_date))}}</td>
                                 <td class="text-left"> {{ $row->worker_name }} </td>
                                 <td class="text-left"> {{ $row->store_name }} </td>
                             </tr>

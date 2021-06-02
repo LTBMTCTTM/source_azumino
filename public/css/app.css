@@ -52445,6 +52445,15 @@ a.text-muted:hover {
   height: calc(2.25rem + 2px) !important;
 }
 
+/*
+fixed th,td padding
+*/
+
+.table th,
+.table td {
+  padding: 0.5rem !important;
+}
+
 .cst-progress {
   z-index: 9998;
   cursor: wait;

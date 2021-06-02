@@ -17,7 +17,7 @@
             @csrf
             <div class="form-group">
                 <label for="lot-no">ロットNo</label>
-                <input type="text" name="lot_no" class="form-control" id="lot-no" autocomplete="off" placeholder="YYYYMMDD.XX">
+                <input type="text" name="lot_no" class="form-control" id="lot-no" autocomplete="off" placeholder="YYYY.MMDD.XX">
             </div>
             <div class="form-group">
                 <label for="actual-vote">現品票No</label>

@@ -52,7 +52,7 @@ class MShipDest extends Model
                 $results->offset($offset)
                     ->limit($limit);
             }
-            //echo $condition->ship_des_tel;exit;
+            //echo $results->toSql();exit;
             $data = $results->get();
 
             return new LengthAwarePaginator($data, $total, $limit, $page);

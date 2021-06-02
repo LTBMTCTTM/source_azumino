@@ -36,26 +36,26 @@
         },
         func_render_grid_view_row: function (data, idx) {
             var html = '';
-            html += '<tr id=' + data.id + '-' + data.index + '>';
+            html += '<tr id=' + removeNull(data.id) + '-' + removeNull(data.index) + '>';
             html += '<td class="text-center">' +
                 '    <label class="custom-control custom-checkbox">' +
-                '        <input type="checkbox" class="custom-control-input" value="' + data.id + '-' + data.index + '" onchange="isCheckAll(this)">' +
+                '        <input type="checkbox" class="custom-control-input" value="' + removeNull(data.id) + '-' + removeNull(data.index) + '" onchange="isCheckAll(this)">' +
                 '        <span class="custom-control-label"></span>' +
                 '    </label>' +
                 '</td>';
-            const work_date = data.work_date == null ? " " : moment(data.work_date).format("YYYY/MM/DD");
+            const create_date = data.create_date == null ? " " : moment(data.create_date).format("YYYY/MM/DD");
             const ship_date = data.ship_date == null ? " " : moment(data.ship_date).format("YYYY/MM/DD");
-            html += '<td class="text-center">' + work_date + '</td>';
+            html += '<td class="text-center">' + create_date + '</td>';
             html += '<td class="text-center">' + ship_date + '</td>';
-            html += '<td class="text-center"> ' + data.lot_no + ' </td>';
-            html += '<td class="text-center"> ' + data.actual_vote + ' </td>';
-            html += '<td class="text-center"> '+data.index+'/'+data.palette_plan+' </td>';
-            html += '<td class="text-left">' + data.ship_des_name + '</td>';
-            html += '<td class="text-center">' + data.car_num + '</td>';
-            const ship_hour = data.ship_date == null ? " " : moment(data.ship_date).format("h:mm");
-            html += '<td class="text-center">'+ship_hour+'</td>';
-            html += '<td class="text-left">'+data.worker_name+'</td>';
-            html += '<td class="text-left"> '+data.store_name+' </td>';
+            html += '<td class="text-center"> ' + removeNull(data.lot_no) + ' </td>';
+            html += '<td class="text-center"> ' + removeNull(data.actual_vote) + ' </td>';
+            html += '<td class="text-center"> '+removeNull(data.index)+'/'+(data.palette_plan)+' </td>';
+            html += '<td class="text-left">' + removeNull(data.ship_des_name) + '</td>';
+            html += '<td class="text-center">' + removeNull(data.car_num) + '</td>';
+            const create_hour = data.create_date == null ? " " : moment(data.create_date).format("HH:mm");
+            html += '<td class="text-center">'+create_hour+'</td>';
+            html += '<td class="text-left">'+removeNull(data.worker_name)+'</td>';
+            html += '<td class="text-left"> '+removeNull(data.store_name)+' </td>';
             html += '</tr>';
 
             return html;

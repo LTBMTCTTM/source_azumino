@@ -63,12 +63,12 @@ function izanagi(_action, _method, _data, _params, _callback) {
 
 function swalConfirm(message) {
     return swal.mixin({
-        title: 'Azumino',
-        text: message,
+        title: '安曇野出庫情報管理システム',
+        html: message,
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonText: "Yes, continue!",
-        cancelButtonText: "No, cancel!",
+        confirmButtonText: 'OK',
+        cancelButtonText: 'キャンセル',
         reverseButtons: true
     });
 }
@@ -76,14 +76,14 @@ function swalConfirm(message) {
 function swalAlert(message, type) {
     swal.fire({
         icon: type,
-        title: 'Azumino',
-        html: message,
+        title: '安曇野出庫情報管理システム',
+        html: message
     });
 }
 
 function swal_alert(message, type) {
     const swalAlertWithBootstrapButtons = swal.mixin({
-        title: 'Azumino',
+        title: '安曇野出庫情報管理システム',
         text: message,
         icon: type,
     });
@@ -103,7 +103,7 @@ function changePasswordCallback(res) {
     if (res.data.success === true) {
         window.location.href = "/login";
     } else {
-        if (_.has(res.data.message, 'current_password')) {
+        /*if (_.has(res.data.message, 'current_password')) {
             jQuery("#current_password-validator").text(res.data.message.current_password);
         } else {
             jQuery("#current_password-validator").text('');
@@ -119,6 +119,12 @@ function changePasswordCallback(res) {
             jQuery("#new_confirm_password-validator").text(res.data.message.new_confirm_password);
         } else {
             jQuery("#new_confirm_password-validator").text('');
+        }*/
+
+        if (_.has(res.data.message, 'new_password_error')){
+            jQuery("#change-password-validator").text(res.data.message.new_password_error);
+        } else {
+            jQuery("#change-password-validator").text('');
         }
 
     }
@@ -163,4 +169,12 @@ function getMessageErrors(message) {
     });
 
     return $mess;
+}
+
+function removeNull(value) {
+    if (value === 'undefined' || value === null) {
+        return '';
+    }
+
+    return value;
 }

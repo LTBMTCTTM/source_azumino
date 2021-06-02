@@ -9,4 +9,4 @@ define('DATE_FORMAT', 'Y/m/d');
 define('DATE_FORMAT_CSV', 'Ymd');
 define('TIME_FORMAT', 'Y/m/d H:i:s');
 define('TIME_FORMAT_CSV', 'YmdHis');
-define('PAGE_LIMITS', 10);
+define('PAGE_LIMITS', 16);

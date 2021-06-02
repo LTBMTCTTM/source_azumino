@@ -38,22 +38,6 @@ class SiteController extends Controller
                 return response()->json($validator, 200);
             }
 
-            $new_password_credential = $request->only('new_password');
-            $new_password_rules = [
-                'new_password' => [
-                    'required',
-                    'string',
-                    'min:8',
-                    'regex:/[@$!%*#?&]/',
-                ],
-            ];
-            $new_password_validator = Validator::make($new_password_credential, $new_password_rules);
-            if ($new_password_validator->fails()) {
-                $validator['success'] = false;
-                $validator['message']['new_password_error'] = '設定パスワードは8文字以上の英数字記号(#$%&+-*)をご利用ください。';
-                return response()->json($validator, 200);
-            }
-
             $new_confirm_password_credential = $request->only('new_confirm_password', 'new_password');
             $new_confirm_password_rules = [
                 'new_confirm_password' => 'same:new_password'
@@ -64,6 +48,21 @@ class SiteController extends Controller
                 $validator['message']['new_password_error'] = '新しいパスワードと確認用のパスワードは相違がありました。';
                 return response()->json($validator, 200);
 
+            }
+
+            $new_password_credential = $request->only('new_password');
+            $new_password_rules = [
+                'new_password' => [
+                    'required',
+                    'string',
+                    'min:8',
+                ],
+            ];
+            $new_password_validator = Validator::make($new_password_credential, $new_password_rules);
+            if ($new_password_validator->fails()) {
+                $validator['success'] = false;
+                $validator['message']['new_password_error'] = '設定パスワードは8文字以上の英数字記号(#$%&+-*)をご利用ください。';
+                return response()->json($validator, 200);
             }
 
             if (isset($validator['success']) && $validator['success'] == false) {

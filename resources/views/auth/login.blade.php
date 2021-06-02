@@ -28,17 +28,22 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="card-body">
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control"
-                               name="admin_id" placeholder="ログインID"
-                               id="username"
-                               value="{{ old('admin_id') }}" autofocus>
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-4 col-form-label">ログインID</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control"
+                                   name="admin_id" placeholder="ログインID"
+                                   id="username"
+                                   value="{{ old('admin_id') }}" autofocus>
+                        </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" placeholder="パスワード"
-                               class="form-control" name="password"
-                               autocomplete="current-password"/>
-
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-4 col-form-label">パスワード</label>
+                        <div class="col-sm-8">
+                            <input type="password" placeholder="パスワード"
+                                   class="form-control" name="password"
+                                   autocomplete="current-password"/>
+                        </div>
                     </div>
                     <div class="row">
                         @if(!$errors->has('password'))
