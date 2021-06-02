@@ -103,7 +103,7 @@ function changePasswordCallback(res) {
     if (res.data.success === true) {
         window.location.href = "/login";
     } else {
-        if (_.has(res.data.message, 'current_password')) {
+        /*if (_.has(res.data.message, 'current_password')) {
             jQuery("#current_password-validator").text(res.data.message.current_password);
         } else {
             jQuery("#current_password-validator").text('');
@@ -119,6 +119,12 @@ function changePasswordCallback(res) {
             jQuery("#new_confirm_password-validator").text(res.data.message.new_confirm_password);
         } else {
             jQuery("#new_confirm_password-validator").text('');
+        }*/
+
+        if (_.has(res.data.message, 'new_password_error')){
+            jQuery("#change-password-validator").text(res.data.message.new_password_error);
+        } else {
+            jQuery("#change-password-validator").text('');
         }
 
     }

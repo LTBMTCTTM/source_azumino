@@ -29,28 +29,24 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control @error('admin_id') is-invalid @enderror"
+                        <input type="text" class="form-control"
                                name="admin_id" placeholder="ログインID"
                                id="username"
                                value="{{ old('admin_id') }}" autofocus>
-                        @error('admin_id')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" placeholder="パスワード"
-                               class="form-control @error('password') is-invalid @enderror" name="password"
+                               class="form-control" name="password"
                                autocomplete="current-password"/>
-                        @error('password')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
+
                     </div>
                     <div class="row">
-                        <p class="login-box-msg">ログインIDとパスワードを入力してください。</p>
+                        @if(!$errors->has('password'))
+                        <p class="login-box-msg">ユーザ名とパスワードを入力してください。</p>
+                        @endif
+                        @error('password')
+                        <p class="login-box-msg text-red">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="text-center mb-3">
                         <button class="btn btn-block btn-primary">ログイン</button>

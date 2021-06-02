@@ -34,7 +34,8 @@ class SiteController extends Controller
             ]);
             if ($currentPasswordValidator->fails()) {
                 $validator['success'] = false;
-                $validator['message']['current_password'] = 'The current password is wrong.';
+                $validator['message']['new_password_error'] = 'ログインユーザのパスワードは正しくありません。';
+                return response()->json($validator, 200);
             }
 
             $new_password_credential = $request->only('new_password');
@@ -49,7 +50,8 @@ class SiteController extends Controller
             $new_password_validator = Validator::make($new_password_credential, $new_password_rules);
             if ($new_password_validator->fails()) {
                 $validator['success'] = false;
-                $validator['message']['new_password'] = 'The new password must be at least 8 characters in length and must contain a special character';
+                $validator['message']['new_password_error'] = '設定パスワードは8文字以上の英数字記号(#$%&+-*)をご利用ください。';
+                return response()->json($validator, 200);
             }
 
             $new_confirm_password_credential = $request->only('new_confirm_password', 'new_password');
@@ -59,7 +61,9 @@ class SiteController extends Controller
             $new_confirm_password_validator = Validator::make($new_confirm_password_credential, $new_confirm_password_rules);
             if ($new_confirm_password_validator->fails()) {
                 $validator['success'] = false;
-                $validator['message']['new_confirm_password'] = 'The new password do not match.';
+                $validator['message']['new_password_error'] = '新しいパスワードと確認用のパスワードは相違がありました。';
+                return response()->json($validator, 200);
+
             }
 
             if (isset($validator['success']) && $validator['success'] == false) {

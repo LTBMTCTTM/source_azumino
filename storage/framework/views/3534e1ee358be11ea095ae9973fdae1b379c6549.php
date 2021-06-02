@@ -29,56 +29,31 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <form method="POST" action="<?php echo e(route('login')); ?>">
                     <?php echo csrf_field(); ?>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control <?php $__errorArgs = ['admin_id'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>"
+                        <input type="text" class="form-control"
                                name="admin_id" placeholder="ログインID"
                                id="username"
                                value="<?php echo e(old('admin_id')); ?>" autofocus>
-                        <?php $__errorArgs = ['admin_id'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?>
-                        <span class="invalid-feedback" role="alert">
-                                        <strong><?php echo e($message); ?></strong>
-                                    </span>
-                        <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="input-group mb-3">
                         <input type="password" placeholder="パスワード"
-                               class="form-control <?php $__errorArgs = ['password'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" name="password"
+                               class="form-control" name="password"
                                autocomplete="current-password"/>
+
+                    </div>
+                    <div class="row">
+                        <?php if(!$errors->has('password')): ?>
+                        <p class="login-box-msg">ユーザ名とパスワードを入力してください。</p>
+                        <?php endif; ?>
                         <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                        <span class="invalid-feedback" role="alert">
-                                        <strong><?php echo e($message); ?></strong>
-                                    </span>
+                        <p class="login-box-msg text-red"><?php echo e($message); ?></p>
                         <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                    </div>
-                    <div class="row">
-                        <p class="login-box-msg">ログインIDとパスワードを入力してください。</p>
                     </div>
                     <div class="text-center mb-3">
                         <button class="btn btn-block btn-primary">ログイン</button>

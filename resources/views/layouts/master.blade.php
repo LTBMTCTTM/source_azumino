@@ -87,8 +87,10 @@
                             <div class="col-sm-7">
                                 <input type="password" class="form-control" name="new_confirm_password"
                                        id="new_confirm_password" required>
-                                <small id="new_confirm_password-validator" class="form-text text-danger"></small>
                             </div>
+                        </div>
+                        <div class="form-group text-center m-0">
+                            <p class="text-red text-bold m-0" id="change-password-validator">&nbsp;</p>
                         </div>
                     </form>
                 </div>
