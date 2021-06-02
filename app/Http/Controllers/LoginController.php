@@ -48,7 +48,7 @@ class LoginController extends Controller
             ];
             $username_validator = Validator::make($username_credential, $username_rules);
             if ($username_validator->fails()) {
-                $errors = ['password' => '正しいユーザ名とパスワードを入力してください。'];
+                $errors = ['password' => 'ユーザIDまたは、パスワードは正しくありません。'];
                 return redirect()->back()
                     ->withInput($request->only($this->username(), 'remember'))
                     ->withErrors($errors);
@@ -60,7 +60,7 @@ class LoginController extends Controller
             ];
             $password_validator = Validator::make($password_credential, $password_rules);
             if ($password_validator->fails()) {
-                $errors = ['password' => '正しいユーザ名とパスワードを入力してください。'];
+                $errors = ['password' => 'ユーザIDまたは、パスワードは正しくありません。'];
                 return redirect()->back()
                     ->withInput($request->only($this->username(), 'remember'))
                     ->withErrors($errors);
@@ -70,7 +70,7 @@ class LoginController extends Controller
             if (Auth::attempt($credentials)) {
                 return redirect('/');
             } else {
-                $errors = ['password' => '正しいユーザ名とパスワードを入力してください。'];
+                $errors = ['password' => 'ユーザIDまたは、パスワードは正しくありません。'];
                 return redirect()->back()
                     ->withInput($request->only($this->username(), 'remember'))
                     ->withErrors($errors);

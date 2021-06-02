@@ -42,7 +42,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                     <div class="row">
                         @if(!$errors->has('password'))
-                        <p class="login-box-msg">ユーザ名とパスワードを入力してください。</p>
+                        <p class="login-box-msg">ユーザIDとパスワードを入力してください。</p>
                         @endif
                         @error('password')
                         <p class="login-box-msg text-red">{{ $message }}</p>
