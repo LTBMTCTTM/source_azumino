@@ -42,7 +42,7 @@
     </div>
     <footer class="main-footer">
         <div class="float-right d-none d-sm-inline">
-            Anything you want
+            Azumino Mineral Water Co., Ltd. 2021
         </div>
     </footer>
 </div>
