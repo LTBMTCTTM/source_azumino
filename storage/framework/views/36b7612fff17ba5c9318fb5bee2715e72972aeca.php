@@ -10,14 +10,16 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-4">
-                    <button type="button" class="btn btn-danger" onclick="jQuery.GoodsHis.func_delete_confirm()">削除</button>
+                    <button type="button" class="btn btn-danger" onclick="jQuery.GoodsHis.func_delete_confirm()">削除
+                    </button>
                 </div>
                 <div class="col-sm-4">
                     <h4 class="font-weight-bold text-center">出庫履歴</h4>
                 </div>
                 <div class="col-sm-4">
                     <ol class="breadcrumb float-sm-right">
-                        <button type="button" class="btn az-bg-primary" onclick="jQuery.GoodsHis.func_export()">ダウンロード</button>
+                        <button type="button" class="btn az-bg-primary" onclick="jQuery.GoodsHis.func_export()">ダウンロード
+                        </button>
                     </ol>
                 </div>
             </div>
@@ -49,26 +51,35 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $__currentLoopData = $model; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $idx => $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <tr id="<?php echo e($row->id.'-'.$row->index); ?>">
-                                <td class="text-center">
-                                    <label class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" value="<?php echo e($row->id.'-'.$row->index); ?>" onchange="isCheckAll(this)"/>
-                                        <span class="custom-control-label"></span>
-                                    </label>
-                                </td>
-                                <td class="text-center"><?php echo e($row->create_date == null ? '' : date(DATE_FORMAT,  strtotime($row->create_date))); ?></td>
-                                <td class="text-center"><?php echo e($row->ship_date == null ? '' : date(DATE_FORMAT, strtotime($row->ship_date))); ?></td>
-                                <td class="text-center"> <?php echo e($row->lot_no); ?> </td>
-                                <td class="text-center"> <?php echo e($row->actual_vote); ?> </td>
-                                <td class="text-center"> <?php echo e($row->index.'/'.$row->palette_plan); ?> </td>
-                                <td class="text-left"> <?php echo e($row->ship_des_name); ?> </td>
-                                <td class="text-center"><?php echo e($row->car_num); ?></td>
-                                <td class="text-center"><?php echo e($row->create_date == null ? '' : date('HH:i', strtotime($row->create_date))); ?></td>
-                                <td class="text-left"> <?php echo e($row->worker_name); ?> </td>
-                                <td class="text-left"> <?php echo e($row->store_name); ?> </td>
-                            </tr>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php
+                        $bg = '';
+                        $id = 0;
+                        foreach($model as $idx => $row):
+                        if ($row->id != $id) {
+                            $id = $row->id;
+                            $bg = $bg == 'az-bg-trblock' ? '' : 'az-bg-trblock';
+                        }
+                        ?>
+                        <tr id="<?php echo e($row->id.'-'.$row->index); ?>" class="<?php echo e($bg); ?>">
+                            <td class="text-center">
+                                <label class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input"
+                                           value="<?php echo e($row->id.'-'.$row->index); ?>" onchange="isCheckAll(this)"/>
+                                    <span class="custom-control-label"></span>
+                                </label>
+                            </td>
+                            <td class="text-center"><?php echo e($row->create_date == null ? '' : date(DATE_FORMAT,  strtotime($row->create_date))); ?></td>
+                            <td class="text-center"><?php echo e($row->ship_date == null ? '' : date(DATE_FORMAT, strtotime($row->ship_date))); ?></td>
+                            <td class="text-center"> <?php echo e($row->lot_no); ?> </td>
+                            <td class="text-center"> <?php echo e($row->actual_vote); ?> </td>
+                            <td class="text-center"> <?php echo e($row->index.'/'.$row->palette_plan); ?> </td>
+                            <td class="text-left"> <?php echo e($row->ship_des_name); ?> </td>
+                            <td class="text-center"><?php echo e($row->car_num); ?></td>
+                            <td class="text-center"><?php echo e($row->create_date == null ? '' : date('H:i', strtotime($row->create_date))); ?></td>
+                            <td class="text-left"> <?php echo e($row->worker_name); ?> </td>
+                            <td class="text-left"> <?php echo e($row->store_name); ?> </td>
+                        </tr>
+                        <?php endforeach;?>
                         </tbody>
                     </table>
                 </div>

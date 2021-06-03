@@ -52428,6 +52428,11 @@ a.text-muted:hover {
   color: #212529;
 }
 
+.az-bg-trblock {
+  background-color: #f8f2da;
+  color: #212529;
+}
+
 .ui-datepicker {
   z-index: 1039 !important;
 }
@@ -52451,7 +52456,7 @@ fixed th,td padding
 
 .table th,
 .table td {
-  padding: 0.5rem !important;
+  padding-bottom: 0.25rem !important;
 }
 
 .cst-progress {

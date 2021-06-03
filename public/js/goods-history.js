@@ -27,16 +27,20 @@
             }
         },
         func_render_grid_view: function (data) {
-            var html = '';
-            jQuery.each(data, function (idx, product) {
-                html += jQuery.GoodsHis.func_render_grid_view_row(product, idx);
+            var html = '', bg = '', id = 0;
+            jQuery.each(data, function (idx, goods) {
+                if (goods.id != id) {
+                    id = goods.id;
+                    bg = bg == 'az-bg-trblock' ? '' : 'az-bg-trblock';
+                }
+                html += jQuery.GoodsHis.func_render_grid_view_row(goods, bg);
             });
             jQuery("table#goods-history-table").find('tbody').empty();
             jQuery("table#goods-history-table").find('tbody').html(html);
         },
-        func_render_grid_view_row: function (data, idx) {
+        func_render_grid_view_row: function (data, bg) {
             var html = '';
-            html += '<tr id=' + removeNull(data.id) + '-' + removeNull(data.index) + '>';
+            html += '<tr id=' + removeNull(data.id) + '-' + removeNull(data.index) + ' class="' + bg + '">';
             html += '<td class="text-center">' +
                 '    <label class="custom-control custom-checkbox">' +
                 '        <input type="checkbox" class="custom-control-input" value="' + removeNull(data.id) + '-' + removeNull(data.index) + '" onchange="isCheckAll(this)">' +
@@ -49,13 +53,13 @@
             html += '<td class="text-center">' + ship_date + '</td>';
             html += '<td class="text-center"> ' + removeNull(data.lot_no) + ' </td>';
             html += '<td class="text-center"> ' + removeNull(data.actual_vote) + ' </td>';
-            html += '<td class="text-center"> '+removeNull(data.index)+'/'+(data.palette_plan)+' </td>';
+            html += '<td class="text-center"> ' + removeNull(data.index) + '/' + (data.palette_plan) + ' </td>';
             html += '<td class="text-left">' + removeNull(data.ship_des_name) + '</td>';
             html += '<td class="text-center">' + removeNull(data.car_num) + '</td>';
             const create_hour = data.create_date == null ? " " : moment(data.create_date).format("HH:mm");
-            html += '<td class="text-center">'+create_hour+'</td>';
-            html += '<td class="text-left">'+removeNull(data.worker_name)+'</td>';
-            html += '<td class="text-left"> '+removeNull(data.store_name)+' </td>';
+            html += '<td class="text-center">' + create_hour + '</td>';
+            html += '<td class="text-left">' + removeNull(data.worker_name) + '</td>';
+            html += '<td class="text-left"> ' + removeNull(data.store_name) + ' </td>';
             html += '</tr>';
 
             return html;
@@ -70,8 +74,8 @@
         func_render_paginator: function (paginator_html) {
             jQuery("#paginator").html(paginator_html);
         },
-        func_get_search: function(){
-            return  $('#form-goods-his').serializeArray()
+        func_get_search: function () {
+            return $('#form-goods-his').serializeArray()
                 .reduce(function (a, x) {
                     a[x.name] = x.value;
                     return a;
@@ -80,7 +84,7 @@
         func_delete_confirm: function () {
             const $checkedBoxs = $('#goods-history-table tbody td input:checkbox:checked');
             console.log($checkedBoxs);
-            if ($checkedBoxs.length > 0){
+            if ($checkedBoxs.length > 0) {
                 const $mess = '選択中の履歴を削除します。よろしいですか？';
                 const sw_confirm = swalConfirm($mess);
 
@@ -99,7 +103,7 @@
 
         },
         func_delete_callback: function (res) {
-            if (res.data.status){
+            if (res.data.status) {
                 jQuery.GoodsHis.func_search()
             }
             if (!res.data.status) {
@@ -112,7 +116,7 @@
             izanagi('goods-history/export', 'post', params, null, jQuery.GoodsHis.func_export_callback);
         },
         func_export_callback: function (res) {
-            if (res.data.status){
+            if (res.data.status) {
                 window.location.href = encodeURI("file/download?file_name=" + res.data.file_name + "&file_path=" + res.data.file_path);
             }
             if (!res.data.status) {

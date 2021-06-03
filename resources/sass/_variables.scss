@@ -7,33 +7,39 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colors
-$blue:          #337ab7;
-$indigo:        #6574cd;
-$purple:        #9561e2;
-$pink:          #f66d9b;
-$red:           #e3342f;
-$orange:        #f6993f;
-$yellow:        #ffed4a;
-$green:         #38c172;
-$teal:          #4dc0b5;
-$cyan:          #6cb2eb;
-$white:         #fff;
-$light:         #f8f9fa;
-$black:         #212529;
+$blue: #337ab7;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+$white: #fff;
+$light: #f8f9fa;
+$black: #212529;
+$tr-block: #f8f2da;
 
 @mixin background-mixin(
-  $background-color,
-  $color
-){
-  background-color: $background-color;
-  color: $color;
+    $background-color,
+    $color
+) {
+    background-color: $background-color;
+    color: $color;
 }
 
-.az-bg{
-  &-primary{
-    @include background-mixin($blue, $white);
-  }
-  &-light{
-    @include background-mixin($light, $black);
-  }
+.az-bg {
+    &-primary {
+        @include background-mixin($blue, $white);
+    }
+
+    &-light {
+        @include background-mixin($light, $black);
+    }
+
+    &-trblock {
+        @include background-mixin($tr-block, $black);
+    }
 }
