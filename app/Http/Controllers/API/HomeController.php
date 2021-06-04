@@ -37,7 +37,7 @@ class HomeController extends Controller
                 return response()->json($res);
             }
 
-            if (!$this->validateUser($request->user_id, $request->password)){
+            if (!$this->validateUser($request->user_id, $request->password)) {
                 $res = ['result' => 'NG'];
                 $res['message'] = 'The user id or password is wrong.';
                 return response()->json($res);
@@ -48,20 +48,25 @@ class HomeController extends Controller
             $lastDate = $request->get('last_updated', $curDate);
 
             DB::beginTransaction();
-            $workers = MWorker::query()
-                ->where('disabled_flag', 0);
-            if ($lastDate != ''){
-                $workers->where(function ($w) use ($lastDate, $curDate){
-                    $w->whereBetween('last_update', [$lastDate, $curDate]);
-                    $w->orWhereBetween('create_date', [$lastDate, $curDate]);
-                });
+            $check = MWorker::query();
+            if ($lastDate != '') {
+                $check->whereBetween('last_update', [$lastDate, $curDate]);
+                $check->orWhereBetween('create_date', [$lastDate, $curDate]);
             }
 
-            $res['count'] = $workers->count();
-            $res['worker_list'] = $workers->get();
+            $count = $check->count();
+            if ($count > 0) {
+                $workers = MWorker::query()->where('disabled_flag', 0);
+                $res['count'] = $workers->count();
+                $res['worker_list'] = $workers->get();
+                DB::commit();
+                return response()->json($res);
+            }
+            $res['count'] = 0;
+            $res['worker_list'] = [];
             DB::commit();
-
             return response()->json($res);
+
         } catch (\Throwable $e) {
             DB::rollBack();
             $res = ['result' => 'NG'];
@@ -97,20 +102,24 @@ class HomeController extends Controller
             $lastDate = $request->get('last_updated', $curDate);
 
             DB::beginTransaction();
-            $mShipDes = MShipDest::query()
-                ->where('disabled_flag', 0);
-
-            if ($lastDate != ''){
-                $mShipDes->where(function ($w) use ($lastDate, $curDate){
-                    $w->whereBetween('last_update', [$lastDate, $curDate]);
-                    $w->orWhereBetween('create_date', [$lastDate, $curDate]);
-                });
+            $check = MShipDest::query();
+            if ($lastDate != '') {
+                $check->whereBetween('last_update', [$lastDate, $curDate]);
+                $check->orWhereBetween('create_date', [$lastDate, $curDate]);
             }
 
-            $res['count'] = $mShipDes->count();
-            $res['shipdes_list'] = $mShipDes->get();
+            $count = $check->count();
+            if ($count > 0) {
+                $mShipDes = MShipDest::query()
+                    ->where('disabled_flag', 0);
+                $res['count'] = $mShipDes->count();
+                $res['shipdes_list'] = $mShipDes->get();
+                DB::commit();
+                return response()->json($res);
+            }
+            $res['count'] = 0;
+            $res['shipdes_list'] = [];
             DB::commit();
-
             return response()->json($res);
         } catch (\Throwable $e) {
             DB::rollBack();
