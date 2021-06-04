@@ -52,6 +52,7 @@ class HomeController extends Controller
                 ->where('disabled_flag', 0);
             if ($lastDate != ''){
                 $workers->whereBetween('last_update', [$lastDate, $curDate]);
+                $workers->orWhereBetween('create_date', [$lastDate, $curDate]);
             }
 
             $res['count'] = $workers->count();
@@ -99,6 +100,7 @@ class HomeController extends Controller
 
             if ($lastDate != ''){
                 $mShipDes->whereBetween('last_update', [$lastDate, $curDate]);
+                $mShipDes->orWhereBetween('create_date', [$lastDate, $curDate]);
             }
 
             $res['count'] = $mShipDes->count();
