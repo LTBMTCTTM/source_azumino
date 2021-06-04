@@ -67,11 +67,13 @@
             if (isNew) {
                 footerUpdate.hide();
                 footerInsert.show();
+                $('#modal-worker-detail #title').text('作業員の新規登録');
                 const data = {isNew: 1};
                 izanagi('workers/detail', 'post', data, null, jQuery.Workers.func_detail_callback);
             } else {
                 footerUpdate.show();
                 footerInsert.hide();
+                $('#modal-worker-detail #title').text('作業員の情報編集');
                 const data = {isNew: 0, id: self.id};
                 izanagi('workers/detail', 'post', data, null, jQuery.Workers.func_detail_callback);
             }

@@ -72,11 +72,13 @@
             if (isNew){
                 footerUpdate.hide();
                 footerInsert.show();
+                $('#modal-shipping-detail #title').text('出庫先の新規登録');
                 const data = {isNew: 1};
                 izanagi('shipping-destinations/detail', 'post', data, null, jQuery.Shipping.func_detail_callback);
             }else {
                 footerUpdate.show();
                 footerInsert.hide();
+                $('#modal-shipping-detail #title').text('出庫先の情報編集');
                 const data = {isNew: 0, id: self.id};
                 izanagi('shipping-destinations/detail', 'post', data, null, jQuery.Shipping.func_detail_callback);
             }

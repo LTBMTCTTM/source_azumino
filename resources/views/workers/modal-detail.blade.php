@@ -4,7 +4,7 @@
             <div class="modal-header az-bg-primary">
                 <div class="col-1"></div>
                 <div class="col-10 text-center">
-                    <span class="modal-title font-weight-bold text-white">出庫先編集</span>
+                    <span class="modal-title font-weight-bold text-white" id="title">出庫先編集</span>
                 </div>
                 <div class="col-1 ms-3">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
